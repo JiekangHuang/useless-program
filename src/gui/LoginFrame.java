@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.*;
 import javax.swing.*;
+import java.util.concurrent.SubmissionPublisher;
+import util.DefaultSubscriber;
 
 public class LoginFrame extends JFrame {
 
@@ -14,6 +16,11 @@ public class LoginFrame extends JFrame {
      */
     private JTextField accountText;
     private JTextField passwordText;
+    /**
+     * 發布者
+     */
+    private SubmissionPublisher<LoginInfo> loginPublisher = new SubmissionPublisher<>();
+    private SubmissionPublisher<LoginInfo> viewDataPublisher = new SubmissionPublisher<>();
 
     public LoginFrame() {
         // 設定視窗標題
@@ -75,9 +82,16 @@ public class LoginFrame extends JFrame {
         JButton loginBtn = new JButton("登入");
         loginBtn.setFont(FONT);
         loginBtn.addActionListener(e -> {
-            this.onLogin();
+            this.handleClickLogin();
         });
         actionPanel.add(loginBtn);
+        // 查看資料按鈕
+        JButton viewDataBtn = new JButton("查看資料");
+        viewDataBtn.setFont(FONT);
+        viewDataBtn.addActionListener(e -> {
+            this.handleClickViewData();
+        });
+        actionPanel.add(viewDataBtn);
         // 加入ContentPane
         this.getContentPane().add(actionPanel);
     }
@@ -85,7 +99,7 @@ public class LoginFrame extends JFrame {
     /**
      * 處理按下登入按鈕
      */
-    public boolean onLogin() {
+    private void handleClickLogin() {
         // 取得身分證號碼、解鎖碼
         String account = this.accountText.getText();
         String password = this.passwordText.getText();
@@ -94,12 +108,54 @@ public class LoginFrame extends JFrame {
         password = password.trim();
         // 檢查非空字串
         if (account.isEmpty() || password.isEmpty()) {
-            return false;
+            return;
         }
-        // 核對身分證號碼、解鎖碼
-        if (!account.equals("S123456789") || !password.equals("789")) {
-            return false;
+        // 觸發事件
+        this.loginPublisher.submit(new LoginInfo(account, password));
+    }
+
+    /**
+     * 處理按下查看資料按鈕
+     */
+    private void handleClickViewData() {
+        // 取得身分證號碼、解鎖碼
+        String account = this.accountText.getText();
+        String password = this.passwordText.getText();
+        // 處理身分證號碼、解鎖碼
+        account = account.trim();
+        password = password.trim();
+        // 檢查非空字串
+        if (account.isEmpty() || password.isEmpty()) {
+            return;
         }
-        return true;
+        // 觸發事件
+        this.viewDataPublisher.submit(new LoginInfo(account, password));
+    }
+
+    /**
+     * 註冊登入事件
+     */
+    public void onLogin(DefaultSubscriber.DataHandler<LoginInfo> handler) {
+        this.loginPublisher.subscribe(new DefaultSubscriber<>(handler));
+    }
+
+    /**
+     * 註冊查看資料事件
+     */
+    public void onViewData(DefaultSubscriber.DataHandler<LoginInfo> handler) {
+        this.viewDataPublisher.subscribe(new DefaultSubscriber<>(handler));
+    }
+
+    /**
+     * 登入資料
+     */
+    public class LoginInfo {
+        public final String account;
+        public final String password;
+
+        public LoginInfo(String account, String password) {
+            this.account = account;
+            this.password = password;
+        }
     }
 }
