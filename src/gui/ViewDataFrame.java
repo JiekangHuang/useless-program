@@ -49,7 +49,7 @@ public class ViewDataFrame extends JFrame {
         // 設定視窗標題
         this.setTitle("查看資料");
         // 設定視窗寬度和高度
-        this.setSize(700, 550);
+        this.setSize(800, 550);
         // 視窗顯示在中間
         this.setLocationRelativeTo(null);
         // 關閉視窗程式停止
@@ -67,8 +67,8 @@ public class ViewDataFrame extends JFrame {
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(0, 10, 10, 10);
-        c.gridwidth = 1;
-        c.gridheight = 1;
+        c.gridwidth = 3;
+        c.gridheight = 3;
         c.gridx = 0;
         c.gridy = 0;
         
@@ -81,16 +81,17 @@ public class ViewDataFrame extends JFrame {
         this.getContentPane().add(sp, c);
 
         /**
-         * GridBag：統計資料（總人數）
+         * GridBag：統計資料（總投票人數）
          */
         // Grid參數設定
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(10, 0, 0, 10);
+        c.insets = new Insets(10, 10, 10, 10);
         c.gridwidth = 2;
         c.gridheight = 1;
-        c.gridx = 1;
+        c.gridx = 3;
         c.gridy = 0;
+        this.totalLabel.setFont(FONT_CONTENT);
         // 加入ContentPane
         this.getContentPane().add(totalLabel, c);
 
@@ -100,10 +101,10 @@ public class ViewDataFrame extends JFrame {
         // Grid參數設定
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(0, 0, 10, 0);
+        c.insets = new Insets(10, 10, 10, 10);
         c.gridwidth = 1;
         c.gridheight = 1;
-        c.gridx = 1;
+        c.gridx = 3;
         c.gridy = 1;
         // 創建統計資料（各黨票數）Panel（垂直排列的BoxLayout）
         JPanel partPanel = new JPanel();
@@ -124,10 +125,10 @@ public class ViewDataFrame extends JFrame {
         // Grid參數設定
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(0, 0, 10, 0);
+        c.insets = new Insets(10, 10, 10, 10);
         c.gridwidth = 1;
         c.gridheight = 1;
-        c.gridx = 2;
+        c.gridx = 4;
         c.gridy = 1;
         // 創建統計資料（各人票數）Panel（垂直排列的BoxLayout）
         JPanel personPanel = new JPanel();
@@ -147,11 +148,11 @@ public class ViewDataFrame extends JFrame {
          */
         // Grid參數設定
         c.fill = GridBagConstraints.BOTH;
-        // c.insets = new Insets(0, 10, 10, 10);
+        c.insets = new Insets(0, 10, 10, 10);
         c.gridwidth = 1;
         c.gridheight = 1;
-        c.gridx = 0;
-        c.gridy = 1;
+        c.gridx = 1;
+        c.gridy = 3;
 
         JButton singOutBtn = new JButton("登出");
         singOutBtn.setFont(FONT_TITLE);

@@ -126,7 +126,7 @@ public class LoginFrame extends JFrame {
         password = password.trim();
         // 檢查非空字串
         if (account.isEmpty() || password.isEmpty()) {
-            // return;
+            return;
         }
         // 觸發事件
         this.viewDataPublisher.submit(new LoginInfo(account, password));

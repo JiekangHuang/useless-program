@@ -34,10 +34,18 @@ public class Main {
         loginFrame = new LoginFrame();
         // 當按下登入按鈕
         loginFrame.onLogin(e -> {
+            if (e.account.equals("S987654321") && e.password.equals("321")) {
+                JOptionPane.showMessageDialog(curFrame, "帳號密碼錯誤", "錯誤", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             showVoteFrame(e.account, e.password);
         });
         // 當按下查看資料按鈕
         loginFrame.onViewData(e -> {
+            if (!e.account.equals("A13572468") || !e.password.equals("56781234")) {
+                JOptionPane.showMessageDialog(curFrame, "帳號密碼錯誤", "錯誤", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             showViewDataFrame();
         });
         // 顯示登入視窗
