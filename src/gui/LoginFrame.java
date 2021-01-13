@@ -62,7 +62,7 @@ public class LoginFrame extends JFrame {
         JPanel passwordPanel = new JPanel();
         passwordPanel.setLayout(new BoxLayout(passwordPanel, BoxLayout.X_AXIS));
         // 解鎖碼Label
-        JLabel passwordLabel = new JLabel("解    鎖   碼：");
+        JLabel passwordLabel = new JLabel("解    鎖    碼：");
         passwordLabel.setFont(FONT);
         passwordPanel.add(passwordLabel);
         // 解鎖碼文字欄位
@@ -126,7 +126,7 @@ public class LoginFrame extends JFrame {
         password = password.trim();
         // 檢查非空字串
         if (account.isEmpty() || password.isEmpty()) {
-            return;
+            // return;
         }
         // 觸發事件
         this.viewDataPublisher.submit(new LoginInfo(account, password));
