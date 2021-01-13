@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.util.concurrent.SubmissionPublisher;
 import util.DefaultSubscriber;
 
@@ -31,7 +33,6 @@ public class ViewDataFrame extends JFrame {
      * 資料
      */
     private DefaultTableModel tableModelData;
-
 
     public ViewDataFrame() {
         // 設定視窗標題
@@ -63,6 +64,7 @@ public class ViewDataFrame extends JFrame {
         tablePlayer.setFont(FONT_CONTENT);
         tablePlayer.setRowHeight(25);
 
+        this.getContentPane().add(tablePlayer, c);
 
         /**
          * GridBag：登出按鈕
@@ -72,8 +74,8 @@ public class ViewDataFrame extends JFrame {
         c.insets = new Insets(0, 10, 10, 10);
         c.gridwidth = 1;
         c.gridheight = 1;
-        c.gridx = 2;
-        c.gridy = 2;
+        c.gridx = 0;
+        c.gridy = 1;
 
         JButton singOutBtn = new JButton("登出");
         singOutBtn.setFont(FONT);

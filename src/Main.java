@@ -22,6 +22,10 @@ public class Main {
      * 顯示登入視窗
      */
     public static void showLoginFrame() {
+        // 銷毀投票視窗
+        if (voteFrame != null) {
+            voteFrame.dispose();
+        }
         // 建立登入視窗
         loginFrame = new LoginFrame();
         // 當按下登入按鈕
@@ -29,15 +33,11 @@ public class Main {
             showVoteFrame(e.account, e.password);
         });
         // 當按下查看資料按鈕
-        viewDataFrame.onLogin(e -> {
+        loginFrame.onViewData(e -> {
             showViewDataFrame();
         });
         // 顯示登入視窗
         loginFrame.setVisible(true);
-        // 銷毀投票視窗
-        if (voteFrame != null) {
-            voteFrame.dispose();
-        }
         // 切換到登入視窗
         curFrame = loginFrame;
     }
@@ -73,12 +73,12 @@ public class Main {
         // 顯示查看資料視窗
         viewDataFrame = new ViewDataFrame();
         // 當按下登出按鈕
-        voteFrame.onSingOut(e -> {
-            System.out.println(username + ": 登出");
+        viewDataFrame.onSingOut(e -> {
+            System.out.println("登出");
             showLoginFrame();
         });
-        voteFrame.setVisible(true);
+        viewDataFrame.setVisible(true);
         // 切換到查看資料視窗
-        curFrame = voteFrame;
+        curFrame = viewDataFrame;
     }
 }
