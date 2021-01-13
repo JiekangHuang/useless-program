@@ -54,8 +54,8 @@ public class ViewDataFrame extends JFrame {
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(0, 10, 10, 10);
-        c.gridwidth = 2;
-        c.gridheight = 1;
+        c.gridwidth = 3;
+        c.gridheight = 3;
         c.gridx = 0;
         c.gridy = 0;
         // 玩家列表
@@ -64,7 +64,7 @@ public class ViewDataFrame extends JFrame {
         tablePlayer.setFont(FONT_CONTENT);
         tablePlayer.setRowHeight(25);
 
-        this.getContentPane().add(tablePlayer, c);
+        // this.getContentPane().add(tablePlayer, c);
 
         /**
          * GridBag：登出按鈕
@@ -75,7 +75,7 @@ public class ViewDataFrame extends JFrame {
         c.gridwidth = 1;
         c.gridheight = 1;
         c.gridx = 0;
-        c.gridy = 1;
+        c.gridy = 0;
 
         JButton singOutBtn = new JButton("登出");
         singOutBtn.setFont(FONT);

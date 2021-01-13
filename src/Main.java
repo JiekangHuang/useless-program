@@ -26,6 +26,10 @@ public class Main {
         if (voteFrame != null) {
             voteFrame.dispose();
         }
+        // 銷毀查看資料視窗
+        if (viewDataFrame != null) {
+            viewDataFrame.dispose();
+        }
         // 建立登入視窗
         loginFrame = new LoginFrame();
         // 當按下登入按鈕
